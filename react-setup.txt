@@ -1,0 +1,66 @@
+npm init --yes
+npm install react react-dom
+npm install --save-dev webpack webpack-cli babel-loader @babel/core @babel/plugin-transform-react-jsx
+mkdir dist src
+touch dist/index.html dist/styles.css src/index.jsx src/app-name.jsx
+>webpack.config.js
+webpack.config.js:
+module.exports = {
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              '@babel/plugin-transform-react-jsx'
+            ]
+          }
+        }
+      }
+    ]
+  },
+  performance: {
+    hints: false
+  }
+};
+package.json:
+  "scripts": {
+    "build":"webpack",
+    "watch": "webpack --watch --stats=minimal --mode=development --devtool=source-map",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+
+index.html:
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <title>React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="main.js"></script>
+  </body>
+</html>
+index.jsx:
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import AppName from './app-name';
+const element = <AppName />;
+const root = ReactDOM.createRoot(document.querySelector('#root'));
+root.render(element);
+app-name.jsx:
+import React from 'react';
+class AppName extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+}
+export default AppName;
