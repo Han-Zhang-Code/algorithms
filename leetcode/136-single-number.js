@@ -20,8 +20,6 @@ Output: 1
 var singleNumber = function (nums) {
   for (let i = 0; i < nums.length; i++) {
     if (i === nums.lastIndexOf(nums[i])) return nums[i];
-    else {
-      nums.splice(nums.lastIndexOf(nums[i]), 1);
-    }
+    else nums.splice(nums.lastIndexOf(nums[i]), 1);
   }
 };
