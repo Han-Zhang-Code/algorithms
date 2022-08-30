@@ -19,9 +19,8 @@ Output: 1
 // eslint-disable-next-line no-unused-vars
 var singleNumber = function (nums) {
   for (let i = 0; i < nums.length; i++) {
-    if (i === nums.lastIndexOf(nums[i])) {
-      return nums[i];
-    } else {
+    if (i === nums.lastIndexOf(nums[i])) return nums[i];
+    else {
       nums.splice(nums.lastIndexOf(nums[i]), 1);
     }
   }
